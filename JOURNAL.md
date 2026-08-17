@@ -62,7 +62,7 @@ The repository has pre-existing lint, type-check, and unit-test failures unrelat
 
 ### Check-in 2 (end of week)
 
-**PR link:** [PASTE FINAL PR LINK HERE]
+**PR link:** (https://github.com/ascherj/pathreview/pull/1036)
 
 **Branch:** `fix/97-review-progress-indicator`
 
