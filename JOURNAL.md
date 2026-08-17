@@ -27,3 +27,18 @@ I am comfortable taking on this Tier 3 issue because I can trace the React hook,
 The scope appears realistic for Weeks 8–9, and the issue does not list any unresolved blocker or dependency. The main risk is that further investigation may reveal that frontend types, backend progress fields, or additional tests also need changes, so I will verify the API contract before deciding the final implementation scope.
 
 I also checked the issue comments and know that multiple students have already expressed interest in Issue #97. Since CodePath treats claims as non-exclusive, I am comfortable proceeding with the issue.
+
+## Week 8 - Reproduction & solution planning
+
+**Reproduction commit link:** [to be added after reproduction commit]
+
+**Reproduction summary:**
+I reproduced the issue locally by logging into the PathReview app, starting a new portfolio review, and following the review flow to the results page. During processing, the review experience did not show any meaningful progress information, and the status response ultimately returned `progress_pct: 0`, confirming that the current flow does not provide real progress updates to the user.
+
+**PLAN.md link:** [to be added after PLAN.md is committed]
+
+**Walkthrough video (recommended):** Not recorded
+
+**Blockers or open questions:**
+The remaining design decisions are how to represent coarse progress milestones and how strictly to type the status response. I’ll resolve those in `PLAN.md` while keeping the existing polling architecture.
+
