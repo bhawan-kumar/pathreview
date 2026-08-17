@@ -42,3 +42,53 @@ I reproduced the issue locally by logging into the PathReview app, starting a ne
 **Blockers or open questions:**
 The remaining design decisions are how to represent coarse progress milestones and how strictly to type the status response. I’ll resolve those in `PLAN.md` while keeping the existing polling architecture.
 
+## Week 9 - Solution building & PR submission
+
+### Check-in 1 (mid-week)
+
+**Current progress:**  
+I completed the core implementation for Issue #97. From the user’s perspective, the main problem was that a long-running review looked stuck because the review page only displayed a static spinner even though processing was still happening in the background. I traced the full flow from the frontend polling hook to the status API and review-processing service and found that the UI had no meaningful progress value to display because `progress_pct` was not persisted or updated during processing.
+
+To fix this, I added a persisted `progress_pct` field to the review model and created a database migration for it. I then updated the review-processing pipeline to write coarse progress milestones as each major stage completes. The review status endpoint now exposes that value through a typed response, and the frontend polling flow consumes the latest progress value and renders it as an accessible progress bar with a visible percentage instead of showing only a spinner.
+
+I also added backend and frontend tests to cover the new behavior. The backend tests verify that new reviews start at `0%`, progress moves forward through the processing stages, successful reviews reach `100%`, and processing failures do not falsely report completion. The frontend tests verify that the progress bar displays the polled percentage correctly and falls back safely to `0%` when no progress value is available.
+
+**Next steps:**  
+Complete final self-review, open the pull request, fill out the PR template, add the PR link to this journal, and submit the working branch URL through the course portal.
+
+**Blockers:**  
+The repository has pre-existing lint, type-check, and unit-test failures unrelated to Issue #97. I compared the failures against the baseline before my implementation and confirmed that my changes introduced no new failures. All newly added Issue #97 tests pass.
+
+
+### Check-in 2 (end of week)
+
+**PR link:** [PASTE FINAL PR LINK HERE]
+
+**Branch:** `fix/97-review-progress-indicator`
+
+**What you built:**  
+I implemented end-to-end live progress reporting for long-running reviews. Instead of leaving the user on a static loading state with no indication that work is progressing, the backend now persists progress as the review moves through its major processing stages, the status endpoint returns the latest percentage, and the review page displays that value through an accessible live progress bar. This preserves the existing polling architecture while making the review experience much clearer to the user.
+
+The implementation includes the database, backend service, API contract, frontend polling flow, and UI. I added the `progress_pct` field and migration, initialized new reviews at `0%`, persisted milestones during processing, returned progress through a typed `ReviewStatusResponse`, updated the frontend API and hook types, and replaced the static processing indicator with a percentage-based progress bar.
+
+**Tests added or updated:**  
+Updated `tests/unit/test_review_service.py` with tests covering:
+
+- new reviews starting at `0%`
+- progress advancing monotonically through processing milestones
+- successful reviews reaching `100%`
+- failure behavior preserving the last meaningful progress value instead of reporting false completion
+
+Added `frontend/src/pages/__tests__/ReviewPage.test.tsx` with tests covering:
+
+- rendering the live progress bar with the current polled percentage
+- correct progress-bar accessibility attributes
+- safe fallback to `0%` when `progress_pct` is unavailable
+
+All 3 newly added backend tests and both newly added frontend tests pass.
+
+**Self-review confirmation:**  
+- [x] `make check` run - the command still reports documented pre-existing repository lint/type-check failures, but comparison with the baseline confirmed that Issue #97 introduced no new failures.
+- [x] `make test-unit` run - the existing backend baseline remains at 53 failures / 378 passes, and all newly added Issue #97 backend tests pass. The new frontend tests also pass.
+
+**Draft PR feedback received from:** none as I am working on the project a bit late
