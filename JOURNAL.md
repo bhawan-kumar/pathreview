@@ -92,3 +92,53 @@ All 3 newly added backend tests and both newly added frontend tests pass.
 - [x] `make test-unit` run - the existing backend baseline remains at 53 failures / 378 passes, and all newly added Issue #97 backend tests pass. The new frontend tests also pass.
 
 **Draft PR feedback received from:** none as I am working on the project a bit late
+
+## Week 10 - Iteration & reflection
+
+### Reviewer feedback
+
+**Feedback received:** [ ] Yes  [x] No - No FeedBack
+
+**Summary of feedback:**  
+No reviewer feedback was received. As noted for Summer 2026, reviewer feedback is not part of the current PathReview process.
+
+**How you responded:**  
+No response or additional changes were required.
+
+---
+
+### Reflection
+
+**What was harder than you expected?**
+
+The hardest part was understanding an unfamiliar codebase before making changes. Issue #97 initially looked like a simple frontend progress-indicator problem, but after tracing the review flow, I realized the behavior depended on how progress was represented and passed through different parts of the application.
+
+This taught me to understand the complete flow first instead of immediately changing the most visible component.
+
+**What did you learn about working in a large codebase?**
+
+I learned that working in an existing production codebase requires much more discipline than building something from scratch. I had to understand existing architecture, conventions, dependencies, and tests before deciding where a change belonged.
+
+I also learned that a good contribution is not only about making the code work. The implementation should fit naturally into the existing system, be testable, maintainable, and easy for another engineer to review.
+
+**How did AI tools help - and where did they fall short?**
+
+I used AI mainly as a tool to help me understand unfamiliar parts of the codebase, trace relationships between files, and explore possible approaches.
+
+I did not rely on AI to make the final engineering decisions. The implementation approach, architecture decisions, production considerations, testing, validation, and final changes were decided and verified by me based on the actual repository.
+
+AI helped speed up my understanding, but the repository code, tests, documentation, and runtime behavior remained my source of truth. I treated AI suggestions as possibilities to investigate rather than decisions to automatically follow.
+
+**What would you do differently if you started over?**
+
+I would map the complete feature flow earlier before thinking about implementation. I would identify where the review starts, how its state changes, how progress reaches the frontend, and which tests cover that behavior.
+
+That would make the investigation more structured and reduce time spent exploring directions that may not fit the existing architecture.
+
+**What are you most proud of from this module?**
+
+I am most proud of improving the way I approach an unfamiliar production codebase.
+
+Instead of treating the task as simply fixing a visible bug, I reproduced the issue, studied the existing implementation, documented my findings, created a solution plan, made the changes carefully, validated them, and prepared the contribution in a way that another engineer could review.
+
+The biggest takeaway for me was learning to understand the system first and then make the smallest appropriate production-quality change.
