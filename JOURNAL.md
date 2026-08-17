@@ -37,7 +37,7 @@ I reproduced the issue locally by logging into the PathReview app, starting a ne
 
 **PLAN.md link:** https://github.com/bhawan-kumar/pathreview/blob/fix/97-review-progress-indicator/PLAN.md
 
-**Walkthrough video (recommended):** Not recorded
+**Walkthrough video (recommended):** [](https://www.loom.com/share/a43217fe76cb4701932628f80e19a839)
 
 **Blockers or open questions:**
 The remaining design decisions are how to represent coarse progress milestones and how strictly to type the status response. I’ll resolve those in `PLAN.md` while keeping the existing polling architecture.
