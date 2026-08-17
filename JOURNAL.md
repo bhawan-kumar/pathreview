@@ -30,14 +30,14 @@ I also checked the issue comments and know that multiple students have already e
 
 ## Week 8 - Reproduction & solution planning
 
-**Reproduction commit link:** [](https://github.com/bhawan-kumar/pathreview/commit/10fd6f7)
+**Reproduction commit link:** (https://github.com/bhawan-kumar/pathreview/commit/10fd6f7)
 
 **Reproduction summary:**
 I reproduced the issue locally by logging into the PathReview app, starting a new portfolio review, and following the review flow to the results page. During processing, the review experience did not show any meaningful progress information, and the status response ultimately returned `progress_pct: 0`, confirming that the current flow does not provide real progress updates to the user.
 
 **PLAN.md link:** https://github.com/bhawan-kumar/pathreview/blob/fix/97-review-progress-indicator/PLAN.md
 
-**Walkthrough video (recommended):** [](https://www.loom.com/share/a43217fe76cb4701932628f80e19a839)
+**Walkthrough video (recommended):** (https://www.loom.com/share/a43217fe76cb4701932628f80e19a839)
 
 **Blockers or open questions:**
 The remaining design decisions are how to represent coarse progress milestones and how strictly to type the status response. I’ll resolve those in `PLAN.md` while keeping the existing polling architecture.
